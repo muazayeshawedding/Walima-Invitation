@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Walima Invitation – Muaz &amp; Ayesha</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500&family=Amiri:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#a9dcc4; --bg2:#c9ecdb; --card:#fcfff9; --tint:#dcf2e7; --ink:#12342a; --muted:#3d6354; --soft:#2f8a6c; --deep:#1d6b52; --gold:#8f6f2e; --line:#8fc7ae; --btn:#1d6b52; --bo:.5;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif; --sans:'Montserrat',system-ui,Arial,sans-serif;
+  --ar:'Amiri','Scheherazade New','Traditional Arabic',serif; --script:'Great Vibes','Snell Roundhand',cursive,serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0d1a15; --bg2:#13251e; --card:#1b3028; --tint:#24433a; --ink:#f1f9f4; --muted:#bcd8ca; --soft:#6fcaa9; --deep:#92e3c2; --gold:#e3c680; --line:#4a7a69; --btn:#2a8566; --bo:.14; color-scheme:dark;}
+}
+:root[data-theme="dark"]{--bg:#0d1a15; --bg2:#13251e; --card:#1b3028; --tint:#24433a; --ink:#f1f9f4; --muted:#bcd8ca; --soft:#6fcaa9; --deep:#92e3c2; --gold:#e3c680; --line:#4a7a69; --btn:#2a8566; --bo:.14; color-scheme:dark;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;text-align:center;color:var(--ink);font-family:var(--serif);
+  background:radial-gradient(circle,color-mix(in srgb,var(--deep) 14%,transparent) 1px,transparent 1.6px) 0 0/22px 22px,linear-gradient(165deg,var(--bg2),var(--bg))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+p{margin:0}
+a{-webkit-tap-highlight-color:transparent}
+.view{display:none;position:relative;z-index:1;min-height:100vh;padding:26px 14px 40px;flex-direction:column;align-items:center}
+.view.active{display:flex}
+#home{justify-content:center}
+
+/* ambient */
+.blobs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.blobs b{position:absolute;border-radius:50%;filter:blur(38px);opacity:var(--bo);animation:drift 20s ease-in-out infinite}
+.blobs b:nth-child(1){width:260px;height:260px;left:-80px;top:4%;background:#e9fbf3}
+.blobs b:nth-child(2){width:220px;height:220px;right:-70px;top:38%;background:#f3e2b5;animation-delay:-7s}
+.blobs b:nth-child(3){width:280px;height:280px;left:10%;bottom:-100px;background:#d9f6e8;animation-delay:-12s}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(26px,-30px)}}
+
+.bismillah{font-family:var(--ar);font-size:clamp(27px,8vw,36px);color:var(--deep);direction:rtl;line-height:1.7}
+.eyebrow{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);margin-top:6px}
+.script{font-family:var(--script);font-weight:400;line-height:1.1}
+h1.script{font-size:clamp(78px,24vw,104px);margin:6px 0 0;color:var(--deep)}
+.of{font-size:25px;font-style:italic;color:var(--ink);margin:2px 0 26px}
+.rule{display:flex;align-items:center;gap:10px;max-width:240px;margin:20px auto}
+.rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.rule::after{transform:scaleX(-1)}
+.rule i{width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+
+/* envelope */
+.envelope{position:relative;width:min(320px,84vw);aspect-ratio:1.5;background:linear-gradient(#ffffff,var(--tint));border:1px solid var(--gold);border-radius:8px;box-shadow:0 18px 40px rgba(30,90,70,.2);margin:0 0 16px;cursor:pointer;animation:float 5s ease-in-out infinite}
+.envelope::before,.envelope::after{content:"";position:absolute;bottom:0;width:50%;height:100%;background:linear-gradient(135deg,transparent 49.5%,var(--gold) 50%,transparent 50.7%)}
+.envelope::before{left:0}
+.envelope::after{right:0;transform:scaleX(-1)}
+.flap{position:absolute;top:0;left:0;width:100%;height:60%;background:linear-gradient(#ffffff,var(--tint));clip-path:polygon(0 0,100% 0,50% 100%);border-top:1px solid var(--gold);z-index:2;transform-origin:top;transition:transform .8s ease}
+.envelope.open .flap{transform:rotateX(180deg)}
+.seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e6cf94,#b08f4f);color:#fff;display:flex;align-items:center;justify-content:center;font-size:21px;font-style:italic;font-weight:600;z-index:3;box-shadow:0 3px 10px rgba(0,0,0,.3);animation:pulse 2.6s ease-in-out infinite;transition:opacity .4s}
+.envelope.open .seal{opacity:0;animation:none}
+@keyframes pulse{50%{transform:translate(-50%,-50%) scale(1.07)}}
+@keyframes float{50%{transform:translateY(-6px)}}
+.hint{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:22px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:54px;width:min(340px,100%);font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:#f7fffb;background:var(--btn);padding:0 24px;border-radius:50px;border:0;cursor:pointer;box-shadow:0 8px 18px rgba(47,122,98,.3)}
+.back{display:inline-block;margin-top:20px;font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:14px}
+
+/* invitation card */
+.invite{position:relative;width:min(470px,100%);margin:10px 0 0;background:var(--card);border:2px solid var(--gold);border-radius:200px 200px 22px 22px;padding:80px 26px 46px;box-shadow:0 26px 54px rgba(30,90,70,.18);animation:rise .9s ease both}
+.invite::before{content:"";position:absolute;inset:8px;border:1.5px solid var(--line);border-radius:192px 192px 15px 15px;pointer-events:none}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.invite>*:not(.sprig):not(.crest){opacity:0;animation:up .8s ease forwards}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.crest{position:absolute;top:24px;left:50%;width:42px;height:42px;margin-left:-21px;animation:glow 4s ease-in-out infinite}
+@keyframes glow{50%{filter:drop-shadow(0 0 7px rgba(185,154,91,.7))}}
+.sprig{position:absolute;width:48px;height:96px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='120' viewBox='0 0 60 120'%3E%3Cpath d='M30 118C27 84 34 44 29 6' fill='none' stroke='%234f9a80' stroke-width='1.6' stroke-linecap='round'/%3E%3Cg fill='%2388cfb1'%3E%3Cellipse cx='20' cy='100' rx='5.5' ry='11' transform='rotate(-38 20 100)'/%3E%3Cellipse cx='40' cy='88' rx='5.5' ry='11' transform='rotate(38 40 88)' fill='%2362b894'/%3E%3Cellipse cx='20' cy='74' rx='5.5' ry='11' transform='rotate(-38 20 74)'/%3E%3Cellipse cx='41' cy='62' rx='5.5' ry='11' transform='rotate(38 41 62)' fill='%2362b894'/%3E%3Cellipse cx='20' cy='48' rx='5' ry='10' transform='rotate(-38 20 48)'/%3E%3Cellipse cx='39' cy='36' rx='5' ry='10' transform='rotate(38 39 36)' fill='%2362b894'/%3E%3Cellipse cx='22' cy='22' rx='4.4' ry='9' transform='rotate(-35 22 22)'/%3E%3Cellipse cx='33' cy='8' rx='3.6' ry='8' fill='%2362b894'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;pointer-events:none;transform-origin:50% 100%;animation:sway 7s ease-in-out infinite}
+.sprig.bl{left:-10px;bottom:-10px;width:44px;height:88px;--r:-14deg;--sx:1}
+.sprig.br{right:-10px;bottom:-10px;width:44px;height:88px;--r:14deg;--sx:-1;animation-delay:-3s}
+.sprig.tl{left:-8px;top:34px;width:34px;height:68px;--r:-34deg;--sx:1;animation-delay:-1.5s}
+.sprig.tr{right:-8px;top:34px;width:34px;height:68px;--r:34deg;--sx:-1;animation-delay:-4.5s}
+@keyframes sway{0%,100%{transform:scaleX(var(--sx,1)) rotate(calc(var(--r,0deg) - 3deg))}50%{transform:scaleX(var(--sx,1)) rotate(calc(var(--r,0deg) + 3deg))}}
+
+.quote-ar{font-family:var(--ar);font-size:clamp(21px,5.8vw,25px);direction:rtl;line-height:1.95;margin-top:4px}
+.quote-en{font-style:italic;font-size:19px;line-height:1.45;color:var(--muted);margin-top:4px}
+.quote-ref{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:10px}
+.tag{font-family:var(--sans);font-weight:500;font-size:14px;letter-spacing:.34em;text-transform:uppercase;color:var(--deep);margin-bottom:10px}
+.host{font-size:27px;font-weight:600;line-height:1.2}
+.lead{font-size:21px;font-style:italic;color:var(--muted);margin-top:6px;line-height:1.35}
+.names{font-family:var(--script);font-size:clamp(44px,13.5vw,58px);line-height:1.15;margin-top:8px;color:var(--deep)}
+.names span{display:block;font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin:2px 0}
+.label{display:block;font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.date .m{font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink)}
+.date .d{font-size:86px;font-weight:600;line-height:1;color:var(--deep);margin:4px 0}
+.date .y{font-size:25px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.times{display:grid;grid-template-columns:1fr 1px 1fr;align-items:center;gap:6px}
+.times .vl{align-self:stretch;background:linear-gradient(transparent,var(--gold),transparent)}
+.times b{display:block;font-size:36px;font-weight:600;line-height:1.1}
+.venue .v{font-size:25px;font-weight:600;letter-spacing:.08em;line-height:1.25}
+.small{display:block;font-size:18px;color:var(--muted);margin-top:6px;line-height:1.45}
+.map{display:inline-flex;align-items:center;min-height:48px;margin-top:12px;padding:0 26px;font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--deep);text-decoration:none;border:2px solid var(--deep);border-radius:40px}
+.insha{font-family:var(--ar);font-size:31px;color:var(--deep);direction:rtl;line-height:1.3;margin-top:22px}
+.insha small{display:block;font-family:var(--sans);direction:ltr;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.rsvp{font-size:24px;line-height:1.6;font-weight:500}
+.call{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:66px;background:var(--tint);border:1.5px solid var(--line);border-radius:16px;padding:10px 14px;margin-top:10px;text-decoration:none;color:inherit;font-size:21px;font-weight:600;text-align:center}
+.call span+span{font-family:var(--sans);font-weight:500;font-size:16px;letter-spacing:.06em;color:var(--deep);white-space:nowrap}
+@media (max-width:380px){.invite{padding-left:20px;padding-right:20px}.host{font-size:25px}.date .d{font-size:78px}.times b{font-size:32px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.invite>*{opacity:1!important}}
+</style>
+</head>
+<body>
+<div id="exp" style="display:none;position:fixed;inset:0;z-index:9999;background:#c9ecdb;color:#12342a;align-items:center;justify-content:center;flex-direction:column;padding:30px;text-align:center;font-family:Georgia,'Times New Roman',serif">
+<p style="font-family:'Amiri',Georgia,serif;font-size:32px;direction:rtl;margin:0 0 16px;color:#1d6b52">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+<h2 style="font-weight:400;font-size:30px;margin:0 0 10px">This invitation has expired</h2>
+<p style="margin:0;font-size:18px;opacity:.8">This link was valid until 20 December 2026.</p>
+</div>
+<script>(function(){if(Date.now()>new Date('2026-12-20T23:59:59+05:00').getTime()){document.getElementById('exp').style.display='flex';document.documentElement.style.overflow='hidden';document.body.style.overflow='hidden'}})();</script>
+
+<div class="blobs" aria-hidden="true"><b></b><b></b><b></b></div>
+
+<main id="home" class="view active">
+  <p class="bismillah" lang="ar">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+  <p class="eyebrow">You’re invited to the</p>
+  <h1 class="script">Walima</h1>
+  <p class="of">of Muaz &amp; Ayesha</p>
+  <div class="envelope" id="env" data-go="walima"><div class="flap"></div><div class="seal">M&amp;A</div></div>
+  <p class="hint">Tap the envelope to open</p>
+  <a class="btn" href="#walima" data-go="walima">Open Walima Invitation</a>
+</main>
+
+<main id="walima" class="view">
+  <div class="invite">
+    <i class="sprig tl"></i><i class="sprig tr"></i><i class="sprig bl"></i><i class="sprig br"></i>
+    <svg class="crest" viewBox="0 0 60 60" aria-hidden="true"><defs><linearGradient id="gd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6cf94"/><stop offset="1" stop-color="#a98746"/></linearGradient><mask id="cm"><rect width="60" height="60" fill="#fff"/><circle cx="37" cy="27" r="18" fill="#000"/></mask></defs><circle cx="27" cy="31" r="22" fill="url(#gd)" mask="url(#cm)"/><polygon points="45,14 46.9,19 52,19.3 48,22.6 49.3,27.6 45,24.8 40.7,27.6 42,22.6 38,19.3 43.1,19" fill="url(#gd)"/></svg>
+
+    <p class="bismillah" lang="ar">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+    <p class="quote-ar" lang="ar">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
+    <p class="quote-en">“And among His signs is that He created for you spouses from among yourselves, that you may find tranquility in them, and He placed between you love and mercy.”</p>
+    <p class="quote-ref">Surah Ar-Rum · 30:21</p>
+    <div class="rule"><i></i></div>
+    <p class="tag">Walima</p>
+    <p class="host">Mr. &amp; Mrs. Muhammad Tanveer</p>
+    <p class="lead">request the honour of your presence at the Walima of their beloved son</p>
+    <p class="names">Muaz Shami <span>with</span> Ayesha Arif</p>
+    <div class="rule"><i></i></div>
+    <div class="date"><p class="m">Sunday · December</p><p class="d">13</p><p class="y">2026</p></div>
+    <div class="rule"><i></i></div>
+    <div class="times"><div><span class="label">Reception</span><b>6:00 PM</b></div><span class="vl"></span><div><span class="label">Dinner</span><b>7:30 PM</b></div></div>
+    <div class="rule"><i></i></div>
+    <div class="venue"><span class="label">Venue</span><p class="v">MUGHAL E AZAM GRAND</p><span class="small">Adda Plot, Beaconhouse University Road, Raiwind Road, Eden Park, Lahore.</span><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Mughal+E+Azam+Grand+Raiwind+Road+Lahore">Open in Maps</a></div>
+    <p class="insha" lang="ar">إِنْ شَاءَ اللَّه<small>InshaAllah</small></p>
+    <div class="rule"><i></i></div>
+    <p class="rsvp"><span class="label">RSVP</span>Muhammad Shahid Shami<br>Muhammad Bashir Shami<br>Javed Mehmood</p>
+    <div class="rule"><i></i></div>
+    <div><span class="label">Looking Forward</span>
+      <a class="call" href="tel:03004213547"><span>Muhammad Tanveer</span><span>0300-4213547</span></a>
+      <a class="call" href="tel:03154289762"><span>Muhammad Hassan Shami</span><span>0315-4289762</span></a>
+    </div>
+  </div>
+  <a class="back" href="#home">← Back to envelope</a>
+</main>
+
+<script>
+(function(){
+  var views=['home','walima'], env=document.getElementById('env');
+  function show(){
+    var h=(location.hash||'#home').slice(1); if(views.indexOf(h)<0)h='home';
+    views.forEach(function(v){document.getElementById(v).classList.toggle('active',v===h)});
+    if(h==='home')env.classList.remove('open');
+    document.getElementById(h).querySelectorAll('.invite>*:not(.sprig):not(.crest)').forEach(function(c,i){c.style.animationDelay=(0.15+i*0.07)+'s'});
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('[data-go]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault(); env.classList.add('open');
+      setTimeout(function(){location.hash=a.dataset.go},800);
+    });
+  });
+  window.addEventListener('hashchange',show); show();
+})();
+</script>
+</body>
+</html>
